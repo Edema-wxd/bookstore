@@ -109,7 +109,7 @@ function Navbar() {
           </Link>
         </div>
       </nav>
-    </header>
+    </header> 
   );
 }
 
