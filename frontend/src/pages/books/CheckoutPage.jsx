@@ -16,7 +16,22 @@ function CheckoutPage() {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    const newOrder = {
+      name: data.name,
+      email: currentUser.email,
+      address: {
+        city: data.city,
+        state: data.state,
+        country: data.country,
+        zipcode: data.zipcode,
+      },
+      phone: data.phone,
+      orderItems: cartItems.map((item) => item?._id),
+      totalPrice: totalPrice,
+    };
+    console.log(newOrder);
+  };
 
   const [isChecked, setIsChecked] = useState(false);
 
