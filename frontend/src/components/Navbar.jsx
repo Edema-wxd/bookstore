@@ -9,6 +9,7 @@ import {
 import avatarImg from "../assets/avatar.png";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { useAuth } from "../context/AuthContext";
 
 const navigation = [
   {
@@ -33,7 +34,13 @@ function Navbar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const cartItems = useSelector((state) => state.cart.cartItems);
 
-  const currentuser = false;
+  const { currentUser, logoutUser } = useAuth();
+
+  const currentuser = currentUser;
+  const handleLogout = () => {
+    logoutUser();
+  };
+
   return (
     <header className="max-w-screen-2xl mx-auto px-4 py-6 ">
       <nav className="flex justify-between items-center ">
@@ -81,6 +88,14 @@ function Navbar() {
                           </Link>
                         </li>
                       ))}
+                      <li>
+                        <button
+                          onClick={() => handleLogout()}
+                          className="block px-4 w-full text-left py-2 text-sm hover:bg-grey"
+                        >
+                          Logout
+                        </button>
+                      </li>
                     </ul>
                   </div>
                 )}
@@ -109,7 +124,7 @@ function Navbar() {
           </Link>
         </div>
       </nav>
-    </header> 
+    </header>
   );
 }
 
