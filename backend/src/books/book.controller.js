@@ -58,11 +58,13 @@ const updateBook = async (req, res) => {
 const deleteBook = async (req, res) => {
   try {
     const { id } = req.params;
-    const newBook = await Book.findByIdAndDelete(id);
-    await newBook.save();
+    const deletedBook = await Book.findByIdAndDelete(id);
+    if (!deletedBook) {
+      res.status(404).send({ message: "Book not found" });
+    }
     res
       .status(200)
-      .send({ message: "Book deleted successfully", book: newBook });
+      .send({ message: "Book deleted successfully", book: deletedBook });
   } catch (error) {
     console.error("Error deleting Book", error);
     res.status(500).send({ message: "Failed to delete book" });
