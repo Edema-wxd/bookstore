@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
+import { useCreateOrderMutation } from "../../redux/features/orders/ordersAPI";
+import Swal from "sweetalert2";
 
 function CheckoutPage() {
+  const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const currentUser = true;
+  const { currentUser } = useAuth();
   const totalPrice = cartItems
     .reduce((acc, item) => acc + item.newPrice, 0)
     .toFixed(2);
@@ -16,24 +20,39 @@ function CheckoutPage() {
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
+  const [createOrder, { isLoading, error }] = useCreateOrderMutation();
+
+  const onSubmit = async (data) => {
     const newOrder = {
       name: data.name,
       email: currentUser.email,
       address: {
         city: data.city,
-        state: data.state,
         country: data.country,
+        state: data.state,
         zipcode: data.zipcode,
       },
       phone: data.phone,
       orderItems: cartItems.map((item) => item?._id),
       totalPrice: totalPrice,
     };
-    console.log(newOrder);
+    try {
+      await createOrder(newOrder).unwrap();
+      Swal.fire({
+        title: "Your Order was placed",
+        text: "Expect a mail soon",
+        icon: "success",
+      });
+      navigate("/orders");
+    } catch (error) {
+      console.error("Error placing an order", error);
+    }
   };
 
   const [isChecked, setIsChecked] = useState(false);
+  if (isLoading) {
+    return <div>Loading... </div>;
+  }
 
   return (
     <section>
