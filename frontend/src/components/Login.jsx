@@ -7,7 +7,7 @@ import { useAuth } from "../context/AuthContext";
 function Login() {
   const [message, setMessage] = useState("");
 
-  const { loginUser, signinWithGoogle, } = useAuth();
+  const { loginUser, signinWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   const {
@@ -32,7 +32,7 @@ function Login() {
     try {
       await signinWithGoogle();
       alert("Login successful!");
-      
+
       navigate("/");
     } catch (error) {
       setMessage("Google signin failed");
@@ -87,7 +87,7 @@ function Login() {
           </div>
         </form>
         <p className="align-baseline font-medium mt-4 text-sm">
-          Haven`t an account? Please{" "}
+          Don&apos;t have an account? Please{" "}
           <Link to="/register" className="text-blue-500 hover:text-blue-700">
             Register
           </Link>
