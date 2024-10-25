@@ -6,7 +6,7 @@ import BookCard from "../books/BookCard";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { useFetchAllBooksQuery } from "../../redux/features/books/booksAPI";
+import { useFetchAllBooksQuery } from "../../redux/features/books/booksApi";
 
 function Recommended() {
   const { data: books = [] } = useFetchAllBooksQuery();
