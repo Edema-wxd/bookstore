@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET;
 
-router.post("/", async (req, res) => {
+router.post("/admin", async (req, res) => {
   const { username, password } = req.body;
   try {
     const admin = await User.findOne({ username });
