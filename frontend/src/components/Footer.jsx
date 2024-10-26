@@ -29,21 +29,6 @@ const Footer = () => {
                 Home
               </a>
             </li>
-            <li>
-              <a href="#services" className="hover:text-primary">
-                Services
-              </a>
-            </li>
-            <li>
-              <a href="#about" className="hover:text-primary">
-                About Us
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className="hover:text-primary">
-                Contact
-              </a>
-            </li>
           </ul>
         </div>
 
