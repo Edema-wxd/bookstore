@@ -1,8 +1,21 @@
 import footerLogo from "../assets/footer-logo.png";
+import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
+  const { handleSubmit } = useForm();
+
+  const onSubmit = async () => {
+    const element = document.getElementById("email");
+    element.value = "";
+    Swal.fire({
+      title: "Subscribed",
+      text: "Email Recorded",
+      icon: "success",
+    });
+  };
   return (
     <footer className="bg-gray-900 text-white py-10 px-4">
       {/* Top Section */}
@@ -40,8 +53,9 @@ const Footer = () => {
             Subscribe to our newsletter to receive the latest updates, news, and
             offers!
           </p>
-          <div className="flex">
+          <form onSubmit={handleSubmit(onSubmit)} className="flex">
             <input
+              id="email"
               type="email"
               placeholder="Enter your email"
               className="w-full px-4 py-2 rounded-l-md text-black"
@@ -49,7 +63,7 @@ const Footer = () => {
             <button className="bg-primary px-6 py-2 rounded-r-md hover:bg-primary-dark">
               Subscribe
             </button>
-          </div>
+          </form>
         </div>
       </div>
 
