@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { HiBuildingStorefront } from "react-icons/hi2";
-import { IoSearchOutline } from "react-icons/io5";
+// import { IoSearchOutline } from "react-icons/io5";
 import {
   HiOutlineUser,
   HiOutlineHeart,
@@ -48,16 +48,6 @@ function Navbar() {
           <Link to="/">
             <HiBuildingStorefront className="size-6" />
           </Link>
-          <div className="relative w-40 sm:w-72 space-x-2">
-            <IoSearchOutline className="absolute inline-block left-3 inset-y-2" />
-            <input
-              type="text"
-              name=""
-              className="bg-[#EAEAEA] w-full py-1 md:px-8 px-6 rounded-md focus:outline-none"
-              id=""
-              placeholder="Search here... "
-            />
-          </div>
         </div>
         <div className="relative flex items-center md:space-x-3 space-x-2 ">
           <div>
