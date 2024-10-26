@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { HiMiniBars3CenterLeft } from "react-icons/hi2";
+import { HiBuildingStorefront } from "react-icons/hi2";
 import { IoSearchOutline } from "react-icons/io5";
 import {
   HiOutlineUser,
@@ -46,7 +46,7 @@ function Navbar() {
       <nav className="flex justify-between items-center ">
         <div className="flex items-center md:gap-16 gap-4">
           <Link to="/">
-            <HiMiniBars3CenterLeft className="size-6" />
+            <HiBuildingStorefront className="size-6" />
           </Link>
           <div className="relative w-40 sm:w-72 space-x-2">
             <IoSearchOutline className="absolute inline-block left-3 inset-y-2" />
